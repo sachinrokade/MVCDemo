@@ -9,7 +9,7 @@
 
 	<name>BootUIDemo</name>
 	<description>Demo project for UI in Spring Boot</description>
-	<artifactId>MVCDemo</artifactId>
+	<artifactId>mvcdemo</artifactId>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<docker.image.prefix>spring-boot-mvc-demo</docker.image.prefix>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -86,6 +87,25 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<plugin>
+			    <groupId>com.spotify</groupId>
+			    <artifactId>docker-maven-plugin</artifactId>
+			    <version>1.0.0</version>
+            
+			    <configuration>
+			       <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+			       <dockerDirectory>${project.basedir}</dockerDirectory>
+			       <resources>
+				  <resource>
+				     <directory>${project.build.directory}</directory>
+				     <include>${project.build.finalName}.jar</include>
+				  </resource>
+			       </resources>
+			    </configuration>
+         		</plugin>
+				
+			
+			
 			<!-- CHECKSTYLE -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
