@@ -1,5 +1,5 @@
 
-# BootUIDemo
+# MVCDemo
 
 #For Docker 
 docker pull sachinrokade/mvc
