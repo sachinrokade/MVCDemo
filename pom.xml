@@ -87,23 +87,27 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<!-- Docker -->
 			<plugin>
-			    <groupId>com.spotify</groupId>
-			    <artifactId>docker-maven-plugin</artifactId>
-			    <version>1.0.0</version>
-            
-			    <configuration>
-			       <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-			       <dockerDirectory>${project.basedir}</dockerDirectory>
-			       <resources>
-				  <resource>
-				     <directory>${project.build.directory}</directory>
-				     <include>${project.build.finalName}.jar</include>
-				  </resource>
-			       </resources>
-			    </configuration>
-         		</plugin>
-				
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<!-- <goal>push</goal> --> 
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>sachinrokade/${project.artifactId}</repository>
+			<!-- 		<contextDirectory>src/main/docker</contextDirectory> -->
+					<tag>${project.version}</tag>
+				</configuration>
+			</plugin>
+
 			
 			
 			<!-- CHECKSTYLE -->
