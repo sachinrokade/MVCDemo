@@ -1,4 +1,4 @@
 
 # MVCDemo
 
-docker pull sachinrokade/mvc:letest
+docker pull sachinrokade/mvc
